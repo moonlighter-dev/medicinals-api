@@ -5,9 +5,13 @@ const { ensureAuth, ensureGuest } = require('../middleware/auth')
 
 router.get('/', ensureAuth, herbsController.getHerbs)
 
+router.get('/addHerb', herbsController.newHerb)
+
 router.post('/addHerb', herbsController.addHerb)
 
-router.put('/editHerb', herbsController.editHerb)
+router.get('/editHerb', herbsController.editHerb)
+
+router.put('/editHerb', herbsController.updateHerb)
 
 router.delete('/deleteHerb', herbsController.deleteHerb)
 

@@ -1,27 +1,27 @@
-const deleteBtn = document.querySelectorAll('.del')
-const todoItem = document.querySelectorAll('span.not')
-const todoComplete = document.querySelectorAll('span.completed')
+const editBtn = document.querySelectorAll('.edit')
+const herb = document.querySelectorAll('span.herb')
+const deleteBtn = document.querySelectorAll('.delete')
+
+Array.from(editBtn).forEach((el)=>{
+    el.addEventListener('click', editHerb)
+})
 
 Array.from(deleteBtn).forEach((el)=>{
-    el.addEventListener('click', deleteTodo)
+    el.addEventListener('click', deleteHerb)
 })
 
-Array.from(todoItem).forEach((el)=>{
-    el.addEventListener('click', markComplete)
+Array.from(herb).forEach((el)=>{
+    el.addEventListener('click', viewHerb)
 })
 
-Array.from(todoComplete).forEach((el)=>{
-    el.addEventListener('click', markIncomplete)
-})
-
-async function deleteTodo(){
-    const todoId = this.parentNode.dataset.id
+async function deleteHerb(){
+    const herbId = this.parentNode.dataset.id
     try{
-        const response = await fetch('todos/deleteTodo', {
+        const response = await fetch('herbs/deleteHerb', {
             method: 'delete',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
-                'todoIdFromJSFile': todoId
+                'herbIdFromJSFile': herbId
             })
         })
         const data = await response.json()
@@ -32,14 +32,14 @@ async function deleteTodo(){
     }
 }
 
-async function markComplete(){
-    const todoId = this.parentNode.dataset.id
+async function editHerb(){
+    const herbId = this.parentNode.dataset.id
     try{
-        const response = await fetch('todos/markComplete', {
+        const response = await fetch('herbs/editHerb', {
             method: 'put',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
-                'todoIdFromJSFile': todoId
+                'herbIdFromJSFile': herbId
             })
         })
         const data = await response.json()
@@ -50,14 +50,14 @@ async function markComplete(){
     }
 }
 
-async function markIncomplete(){
-    const todoId = this.parentNode.dataset.id
+async function viewHerb(){
+    const herbId = this.parentNode.dataset.id
     try{
-        const response = await fetch('todos/markIncomplete', {
-            method: 'put',
+        const response = await fetch('herbs/viewHerb', {
+            method: 'get',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
-                'todoIdFromJSFile': todoId
+                'herbIdFromJSFile': herbId
             })
         })
         const data = await response.json()
