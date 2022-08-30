@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medicinal Substances Database</title>
+    <title>Holistic Medicinals Database</title>
 </head>
 <body>
     <div class="container">
-        <!-- if user = logged in, show logged in header-->
-        <!-- else, show regular (guest) header-->
-        <%- include('../partials/header.ejs') %>
+        <% if (user) { %>
+            <%- include('../partials/userheader.ejs') %>
+        <% } else { %>
+            <%- include('../partials/header.ejs') %>
+        <% } %>
         <div class="inner-container">
           <%- include('../partials/errorMessage.ejs') %>
           <%- body %>

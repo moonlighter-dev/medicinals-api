@@ -1,6 +1,4 @@
-<h2>Welcome <%= user.userName %>!</h2>
-
-<h3> Edit your Herb Here:</h3>
+<h1><%= herb.herbName %></h1>
 
 <form action="/herbs/<% herb._id %>" method='POST'>
     <input type="text" placeholder="Herb Name" name='name' value="<% herb.name %>">
@@ -14,7 +12,3 @@
     <input type="text" placeholder="Image" name='image' value="<% herb.image %>">
     <input type="submit">
 </form>
-
-<a href="/">Back to Herbs</a>
-
-<a href="/logout">Logout</a>

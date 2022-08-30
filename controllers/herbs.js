@@ -24,7 +24,15 @@ module.exports = {
     },
     
     newHerb: async (req, res) => {
-        res.render('herbs/add', new Herb())
+        console.log(req.user)
+        try {
+            res.render('herbs/add', { user: req.user })
+        }
+        catch(err) {
+            console.log(err)
+            res.redirect('/herbs')
+        }
+        
     },
 
     addHerb: async (req, res)=>{
@@ -51,7 +59,7 @@ module.exports = {
     editHerb: async (req, res) => {
         try {
             const herb = await Herb.findById(req.params.id)
-            // renderEditPage(res, herb)
+            res.render('/edit', { herbId: herb })
         }
         catch {
             res.redirect('/herbs')

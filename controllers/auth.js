@@ -7,7 +7,7 @@ const User = require('../models/User')
       return res.redirect('/herbs')
     }
     res.render('login', {
-      title: 'Login'
+      user: req.user, title: 'Login'
     })
   }
   
@@ -49,10 +49,10 @@ const User = require('../models/User')
   
   exports.getSignup = (req, res) => {
     if (req.user) {
-      return res.redirect('/herbs')
+      return res.redirect('/herbs', { user: req.user })
     }
     res.render('signup', {
-      title: 'Create Account'
+      user: req.user, title: 'Create Account'
     })
   }
   
