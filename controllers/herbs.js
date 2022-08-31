@@ -3,10 +3,12 @@ const Herb = require('../models/Herbs')
 module.exports = {
     getHerbs: async (req,res)=>{
         console.log(req.user)
+        let herbs = {}
         try{
-            const herbs = await Herb.find({userId:req.user.id})
-            const totalHerbs = await Herb.countDocuments({userId:req.user.id,completed: false})
-            res.render('herbs/herbs', {herbs: herbs, total: totalHerbs, user: req.user})
+            herbs = await Herb.find().lean()
+            console.log(herbs)
+            // const totalHerbs = await Herb.countDocuments({ createdBy:req.user.id })
+            res.render('herbs/herbs', { herbs, user: req.user })
         }catch(err){
             console.log(err)
         }
@@ -15,9 +17,8 @@ module.exports = {
     viewHerb: async (req,res)=>{
         console.log(req.user)
         try{
-            const herb = await Herb.find({herbId:req.herb.id})
-            const totalHerbs = await Herb.countDocuments({userId:req.user.id,completed: false})
-            res.render('herbs/herb', {herbId: herbId, user: req.user})
+            const herb = await Herb.findById(req.params.id).lean()
+            res.render('herbs/herb', { herb, user: req.user })
         }catch(err){
             console.log(err)
         }
@@ -50,7 +51,7 @@ module.exports = {
         try{
             const newHerb = await herb.save()
             console.log('Herb has been added!')
-            res.redirect(`herbs/${newHerb.id}`)
+            res.redirect(`herbs/${newHerb._id}`)
         }catch(err){
             console.log(err)
         }
@@ -59,7 +60,7 @@ module.exports = {
     editHerb: async (req, res) => {
         try {
             const herb = await Herb.findById(req.params.id)
-            res.render('/edit', { herbId: herb })
+            res.render('/edit', { herb: herb })
         }
         catch {
             res.redirect('/herbs')
@@ -67,8 +68,9 @@ module.exports = {
     },
 
     updateHerb: async (req, res)=>{
+        console.log(req.body.herbIdFromJSFile)
         try{
-            await Herb.findOneAndUpdate({_id:req.body.herbIdFromJSFile},{
+            let herb = await Herb.findOneAndUpdate({_id: req.params.id },{
                 name: req.body.name, 
                 latinName: req.body.latinName, 
                 commonName: req.body.commonName,
@@ -80,7 +82,7 @@ module.exports = {
                 image: req.body.image
             })
             console.log('Herb Updated!')
-            res.redirect(`herbs/${newHerb.id}`)
+            res.redirect(`herbs/${herb._id}`)
         }catch(err){
             console.log(err)
         }

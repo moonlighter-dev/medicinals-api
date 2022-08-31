@@ -22,22 +22,17 @@ const HerbSchema = new mongoose.Schema({
     required: true
   },
   channels: {
-    channel: {
       type: String
-    }
   }, 
   category: {
     type: String,
     required: true
   },
   actions: {
-    action: {
       type: String
-    }
   },
   image: {
     type: String,
-    required: true
   }
 
 })

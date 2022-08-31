@@ -2,8 +2,8 @@
 <ul>
     <% herbs.forEach( el => { %>
         <li class='herb' data-id='<%=el._id%>'>
-            <span>'><%= el.herbs %></span>
-            <span class='edit'> Edit </span>
+            <a href="viewHerb/<%=el.id%>"><%= el._id %></span>
+            <a href="editHerb/<%=el.id%>"> Edit </a>
         </li>
     <% }) %>    
 </ul>
