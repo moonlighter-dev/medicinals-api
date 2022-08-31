@@ -23,7 +23,7 @@ module.exports = {
         }
     },
     
-    newHerb: async (req, res) => {
+    newHerb: (req, res) => {
         console.log(req.user)
         try {
             res.render('herbs/add', { user: req.user })
@@ -80,7 +80,7 @@ module.exports = {
                 image: req.body.image
             })
             console.log('Herb Updated!')
-            res.json('Herb Updated!')
+            res.redirect(`herbs/${newHerb.id}`)
         }catch(err){
             console.log(err)
         }
@@ -88,10 +88,11 @@ module.exports = {
 
     deleteHerb: async (req, res)=>{
         console.log(req.body.herbIdFromJSFile)
+        // alert "Are you sure??"
         try{
             await Herb.findOneAndDelete({_id:req.body.herbIdFromJSFile})
             console.log('Deleted Herb')
-            res.json('Deleted It')
+            res.redirect('/herbs')
         }catch(err){
             console.log(err)
         }

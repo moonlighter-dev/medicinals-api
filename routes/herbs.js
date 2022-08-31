@@ -3,16 +3,16 @@ const router = express.Router()
 const herbsController = require('../controllers/herbs') 
 const { ensureAuth, ensureGuest } = require('../middleware/auth')
 
-router.get('/', ensureAuth, herbsController.getHerbs)
+router.get('/', herbsController.getHerbs)
 
-router.get('/addHerb', herbsController.newHerb)
+router.get('/addHerb', ensureAuth, herbsController.newHerb)
 
-router.post('/addHerb', herbsController.addHerb)
+router.post('/addHerb', ensureAuth, herbsController.addHerb)
 
-router.get('/editHerb', herbsController.editHerb)
+router.get('/editHerb', ensureAuth, herbsController.editHerb)
 
-router.put('/editHerb', herbsController.updateHerb)
+router.put('/editHerb', ensureAuth, herbsController.updateHerb)
 
-router.delete('/deleteHerb', herbsController.deleteHerb)
+router.delete('/deleteHerb', ensureAuth, herbsController.deleteHerb)
 
 module.exports = router

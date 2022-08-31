@@ -1,20 +1,14 @@
-<h2>Welcome <%= user.userName %>!</h2>
+<h3> Add your Herb Here:</h3>
 
-    <h3> Add your Herb Here:</h3>
-
-    <form action="/herbs/addHerb" method='POST'>
-        <input type="text" placeholder="Herb Name" name='name'>
-        <input type="text" placeholder="Latin Name" name='latinName'>
-        <input type="text" placeholder="Common Name" name='commonName'>
-        <input type="text" placeholder="Temperature" name='temp'>
-        <input type="text" placeholder="Flavor" name='flavor'>
-        <input type="text" placeholder="Channels" name='channels'>
-        <input type="text" placeholder="Category" name='category'>
-        <input type="text" placeholder="Actions" name='actions'>
-        <input type="text" placeholder="Image" name='image'>
-        <input type="submit">
-    </form>
-
-    <a href="/">Back to Herbs</a>
-
-    <a href="/logout">Logout</a>
+<form action="/herbs/addHerb" method='POST'>
+    <input type="text" placeholder="Herb Name" name='name'>
+    <input type="text" placeholder="Latin Name" name='latinName'>
+    <input type="text" placeholder="Common Name" name='commonName'>
+    <input type="text" placeholder="Temperature" name='temp'>
+    <input type="text" placeholder="Flavor" name='flavor'>
+    <input type="text" placeholder="Channels" name='channels'>
+    <input type="text" placeholder="Category" name='category'>
+    <input type="text" placeholder="Actions" name='actions'>
+    <input type="text" placeholder="Image" name='image'>
+    <input type="submit">
+</form>
