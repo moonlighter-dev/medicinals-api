@@ -50,7 +50,8 @@ module.exports = {
         console.log(req.user, req.params.id)
         try {
             const herb = await Herb.findById(req.params.id).lean()
-            res.render('/herbs/edit', { herb, user: req.user })
+            console.log(herb)
+            res.render('herbs/edit', { herb, user: req.user })
         }
         catch(err) {
             console.log(err)
@@ -83,8 +84,8 @@ module.exports = {
         console.log(req.user, req.params.id)
         // alert "Are you sure??"
         try{
-            let herb = await Herb.findOneAndDelete({ _id: req.params.id })
-            console.log(`${herb.name} deleted!`)
+            await Herb.findOneAndDelete({ _id: req.params.id })
+            console.log(`Deleted!`)
             res.redirect('/')
         }catch(err){
             console.log(err)
