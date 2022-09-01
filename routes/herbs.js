@@ -3,18 +3,28 @@ const router = express.Router()
 const herbsController = require('../controllers/herbs') 
 const { ensureAuth } = require('../middleware/auth')
 
-router.get('/', herbsController.getHerbs)
+// show one herb
+// route: GET /herbs/:id
+router.get('/view/:id', ensureAuth, herbsController.viewHerb)
 
-router.get('/:id', herbsController.viewHerb)
+// show add form
+// route: GET /herbs/new
+router.get('/new', ensureAuth, herbsController.newHerb)
 
-router.get('/addHerb', ensureAuth, herbsController.newHerb)
+// process add form
+// route: POST /herbs
+router.post('/new', ensureAuth, herbsController.addHerb)
 
-router.post('/addHerb', ensureAuth, herbsController.addHerb)
+// show edit page
+// route: GET /herbs/edit/:id
+router.get('/edit/:id', ensureAuth, herbsController.editHerb)
 
-router.get('/editHerb/:id', ensureAuth, herbsController.editHerb)
+// process edit form
+// route: PUT /herbs/:id
+router.put('/edit/:id', ensureAuth, herbsController.updateHerb)
 
-router.put('/editHerb/:id', ensureAuth, herbsController.updateHerb)
-
-router.delete('/deleteHerb/:id', ensureAuth, herbsController.deleteHerb)
+// delete an herb
+// route: DELETE /herbs/:id
+router.delete('/edit/:id', ensureAuth, herbsController.deleteHerb)
 
 module.exports = router

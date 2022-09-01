@@ -1,11 +1,12 @@
-<h1><%= herb.herbName %></h1>
+<h1><%= herb.name %></h1>
     <ul>
         <% Object.keys(herb).forEach( el => { %>
-            <li class='herb-data' data-id='<%=el._id%>'>
+            <li class='herb-data' data-id='<%= el._id %>'>
                 <span><%= el %></span>
                 <span><%= herb[el] %></span>
             </li>
         <% }) %>
     </ul>
 
-<span class='edit'> Edit This Herb</span>
+<a href="/edit/<%= herb._id %>"> Edit this Herb </a>
+

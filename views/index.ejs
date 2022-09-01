@@ -1,0 +1,8 @@
+<h1>Herbs</h1>
+<ul>
+    <% herbs.forEach( el => { %>
+        <li class='herb' data-id='<%=el._id%>'>
+            <a href="herbs/view/<%=el._id%>"><%= el._id %></span>
+        </li>
+    <% }) %>    
+</ul>

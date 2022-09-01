@@ -1,16 +1,19 @@
-<h1><%= herb.herbName %></h1>
+<h1><%= herb.name %></h1>
 
-<form action="/herbs/<% herb._id %>" method='POST'>
-    <input type="text" placeholder="Herb Name" name='name' value="<% herb.name %>">
-    <input type="text" placeholder="Latin Name" name='latinName' value="<% herb.latinName %>">
-    <input type="text" placeholder="Common Name" name='commonName' value="<% herb.commonName %>">
-    <input type="text" placeholder="Temperature" name='temp' value="<% herb.temp %>">
-    <input type="text" placeholder="Flavor" name='flavor' value="<% herb.flavor %>">
-    <input type="text" placeholder="Channels" name='channels' value="<% herb.channels %>">
-    <input type="text" placeholder="Category" name='category' value="<% herb.category %>">
-    <input type="text" placeholder="Actions" name='actions' value="<% herb.actions %>">
-    <input type="text" placeholder="Image" name='image' value="<% herb.image %>">
+<form action="/herbs/edit/<% herb._id %>" method='PUT'>
+    <input type="text" placeholder="Herb Name" name='name' value="<%= herb.name %>">
+    <input type="text" placeholder="Latin Name" name='latinName' value="<%= herb.latinName %>">
+    <input type="text" placeholder="Common Name" name='commonName' value="<%= herb.commonName %>">
+    <input type="text" placeholder="Temperature" name='temp' value="<%= herb.temp %>">
+    <input type="text" placeholder="Flavor" name='flavor' value="<%= herb.flavor %>">
+    <input type="text" placeholder="Channels" name='channels' value="<%= herb.channels %>">
+    <input type="text" placeholder="Category" name='category' value="<%= herb.category %>">
+    <input type="text" placeholder="Actions" name='actions' value="<%= herb.actions %>">
+    <input type="text" placeholder="Image" name='image' value="<%= herb.image %>">
     <input type="submit">
 </form>
 
-<a href="/delete">Delete this Herb</a>
+<form action="/herbs/edit/:id" method="DELETE" id="delete-form">
+    <button type="submit">Delete this Herb
+    </button>
+</form>

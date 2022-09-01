@@ -1,21 +1,9 @@
 const Herb = require('../models/Herbs')
 
 module.exports = {
-    getHerbs: async (req,res)=>{
-        console.log(req.user)
-        let herbs = {}
-        try{
-            herbs = await Herb.find().lean()
-            console.log(herbs)
-            // const totalHerbs = await Herb.countDocuments({ createdBy:req.user.id })
-            res.render('herbs/herbs', { herbs, user: req.user })
-        }catch(err){
-            console.log(err)
-        }
-    },
 
     viewHerb: async (req,res)=>{
-        console.log(req.user)
+        console.log(req.user, req.params.id)
         try{
             const herb = await Herb.findById(req.params.id).lean()
             res.render('herbs/herb', { herb, user: req.user })
@@ -31,13 +19,14 @@ module.exports = {
         }
         catch(err) {
             console.log(err)
-            res.redirect('/herbs')
+            res.redirect('/')
         }
         
     },
 
     addHerb: async (req, res)=>{
-        const herb = new Herb({
+        console.log(req.user)
+        let herb = new Herb({
             name: req.body.name, 
             latinName: req.body.latinName, 
             commonName: req.body.commonName,
@@ -49,28 +38,30 @@ module.exports = {
             image: req.body.image
         })
         try{
-            const newHerb = await herb.save()
+            herb = await herb.save()
             console.log('Herb has been added!')
-            res.redirect(`herbs/${newHerb._id}`)
+            res.redirect('/')
         }catch(err){
             console.log(err)
         }
     },
 
     editHerb: async (req, res) => {
+        console.log(req.user, req.params.id)
         try {
-            const herb = await Herb.findById(req.params.id)
-            res.render('/edit', { herb: herb })
+            const herb = await Herb.findById(req.params.id).lean()
+            res.render('/herbs/edit', { herb, user: req.user })
         }
-        catch {
-            res.redirect('/herbs')
+        catch(err) {
+            console.log(err)
+            res.redirect('/')
         }
     },
 
     updateHerb: async (req, res)=>{
-        console.log(req.body.herbIdFromJSFile)
+        console.log(req.user, req.params.id)
         try{
-            let herb = await Herb.findOneAndUpdate({_id: req.params.id },{
+            let herb = await Herb.findOneAndUpdate({ _id: req.params.id },{
                 name: req.body.name, 
                 latinName: req.body.latinName, 
                 commonName: req.body.commonName,
@@ -81,20 +72,20 @@ module.exports = {
                 actions: req.body.actions,
                 image: req.body.image
             })
-            console.log('Herb Updated!')
-            res.redirect(`herbs/${herb._id}`)
+            console.log(`${herb.name} updated!`)
+            res.redirect('/')
         }catch(err){
             console.log(err)
         }
     },
 
     deleteHerb: async (req, res)=>{
-        console.log(req.body.herbIdFromJSFile)
+        console.log(req.user, req.params.id)
         // alert "Are you sure??"
         try{
-            await Herb.findOneAndDelete({_id:req.body.herbIdFromJSFile})
-            console.log('Deleted Herb')
-            res.redirect('/herbs')
+            let herb = await Herb.findOneAndDelete({ _id: req.params.id })
+            console.log(`${herb.name} deleted!`)
+            res.redirect('/')
         }catch(err){
             console.log(err)
         }

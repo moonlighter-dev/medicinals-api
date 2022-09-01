@@ -3,16 +3,15 @@ const User = require('../models/User')
 
 module.exports = {
     getIndex: async (req,res) => {
-        let herbs
-        let user
+        console.log(req.user)
+        let herbs = {}
         try {
-            herbs = await Herb.find().sort({ createdAt: 'desc' }).limit(10).exec()
-            user = req.user
+            herbs = await Herb.find().lean()
         }
-        catch {
+        catch(err) {
             herbs = []
-            user = ""
+            console.log(err)
         }
-        res.render('herbs/herbs', { user: user, herbs: herbs })
+        res.render('index', { user: req.user, herbs: herbs })
     }
 }
