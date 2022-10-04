@@ -6,7 +6,7 @@ module.exports = {
         console.log(req.user, req.params.id)
         try{
             const herb = await Herb.findById(req.params.id).lean()
-            res.render('herbs/herb', { herb, user: req.user })
+            res.render('herbs/herb', { herb: herb, user: req.user })
         }catch(err){
             console.log(err)
         }
@@ -25,6 +25,9 @@ module.exports = {
     },
 
     addHerb: async (req, res)=>{
+
+        const result = await cloudinary.uploader.upload(req.file.path)
+
         console.log(req.user)
         let herb = new Herb({
             name: req.body.name, 
@@ -35,7 +38,8 @@ module.exports = {
             channels: req.body.channels,
             category: req.body.category,
             actions: req.body.actions,
-            image: req.body.image
+            image: result.secure_url,
+            addedby: req.user.id,
         })
         try{
             herb = await herb.save()
@@ -62,17 +66,7 @@ module.exports = {
     updateHerb: async (req, res)=>{
         console.log(req.user, req.params.id)
         try{
-            let herb = await Herb.findOneAndUpdate({ _id: req.params.id },{
-                name: req.body.name, 
-                latinName: req.body.latinName, 
-                commonName: req.body.commonName,
-                temp: req.body.temp,
-                flavor: req.body.flavor,
-                channels: req.body.channels,
-                category: req.body.category,
-                actions: req.body.actions,
-                image: req.body.image
-            })
+            let herb = await Herb.findOneAndUpdate({ _id: req.params.id })
             console.log(`${herb.name} updated!`)
             res.redirect('/')
         }catch(err){

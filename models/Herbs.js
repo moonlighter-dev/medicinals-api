@@ -33,7 +33,11 @@ const HerbSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-  }
+  },
+  addedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
 
 })
 
