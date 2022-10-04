@@ -12,4 +12,8 @@ router.get('/', apiController.getAll)
 // route: GET /herbs/:id
 router.get('/:id', apiController.getOne)
 
+// Optimizations to API: 
+// get herbs by category
+// get herbs by name, latin name, common name
+
 module.exports = router

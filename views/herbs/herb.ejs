@@ -7,6 +7,6 @@
             </li>
         <% }) %>
     </ul>
-
-<a href="/herbs/edit/<%= herb._id %>"> Edit this Herb </a>
-
+<% if (user) { %>
+    <a href="/herbs/edit/<%= herb._id %>"> Edit this Herb </a>
+<% } %>

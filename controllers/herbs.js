@@ -3,7 +3,7 @@ const Herb = require('../models/Herbs')
 module.exports = {
 
     viewHerb: async (req,res)=>{
-        console.log(req.user, req.params.id)
+        // console.log(req.user, req.params.id)
         try{
             const herb = await Herb.findById(req.params.id).lean()
             res.render('herbs/herb', { herb: herb, user: req.user })
@@ -13,7 +13,7 @@ module.exports = {
     },
     
     newHerb: (req, res) => {
-        console.log(req.user)
+        // console.log(req.user)
         try {
             res.render('herbs/add', { user: req.user })
         }
@@ -28,7 +28,7 @@ module.exports = {
 
         const result = await cloudinary.uploader.upload(req.file.path)
 
-        console.log(req.user)
+        // console.log(req.user)
         let herb = new Herb({
             name: req.body.name, 
             latinName: req.body.latinName, 
@@ -51,7 +51,7 @@ module.exports = {
     },
 
     editHerb: async (req, res) => {
-        console.log(req.user, req.params.id)
+        // console.log(req.user, req.params.id)
         try {
             const herb = await Herb.findById(req.params.id).lean()
             console.log(herb)
@@ -64,7 +64,7 @@ module.exports = {
     },
 
     updateHerb: async (req, res)=>{
-        console.log(req.user, req.params.id)
+        // console.log(req.user, req.params.id)
         try{
             let herb = await Herb.findOneAndUpdate({ _id: req.params.id })
             console.log(`${herb.name} updated!`)
@@ -75,10 +75,12 @@ module.exports = {
     },
 
     deleteHerb: async (req, res)=>{
-        console.log(req.user, req.params.id)
+        // console.log(req.user, req.params.id)
         // alert "Are you sure??"
         try{
-            await Herb.findOneAndDelete({ _id: req.params.id })
+            let herb = await Herb.findById({ _id: req.params.id })
+            await cloudinary.uploader.destroy(post.cloudinaryId)
+            await Post.remove({ _id: req.params.id })
             console.log(`Deleted!`)
             res.redirect('/')
         }catch(err){

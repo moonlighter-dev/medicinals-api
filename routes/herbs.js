@@ -6,7 +6,7 @@ const { ensureAuth } = require('../middleware/auth')
 
 // show one herb
 // route: GET /herbs/:id
-router.get('/view/:id', ensureAuth, herbsController.viewHerb)
+router.get('/view/:id', herbsController.viewHerb)
 
 // show add form
 // route: GET /herbs/new
