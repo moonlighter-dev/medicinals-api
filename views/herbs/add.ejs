@@ -1,14 +1,238 @@
 <h3>Add a New Herb:</h3>
-
-<form action="/herbs/new" method='POST'>
-    <input type="text" placeholder="Herb Name" name='name'>
-    <input type="text" placeholder="Latin Name" name='latinName'>
-    <input type="text" placeholder="Common Name" name='commonName'>
-    <input type="text" placeholder="Temperature" name='temp'>
-    <input type="text" placeholder="Flavor" name='flavor'>
-    <input type="text" placeholder="Channels" name='channels'>
-    <input type="text" placeholder="Category" name='category'>
-    <input type="text" placeholder="Actions" name='actions'>
-    <input type="text" placeholder="Image" name='image'>
-    <input type="submit">
+<div class="container">
+<form action="/herbs/new" enctype="multipart/form-data" method='POST'>
+    <div class="mb-3">
+        <label for="name" class="form-label">Pinyin Name</label>
+        <input type="text" placeholder="Herb Name" name='name'>
+    </div>
+    <div class="mb-3">
+        <label for="latinName" class="form-label">Latin Name</label>
+        <input type="text" placeholder="Latin Name" name='latinName'>
+    </div>
+    <div class="mb-3">
+        <label for="commonName" class="form-label">Common Name</label>
+        <input type="text" placeholder="Common Name" name='commonName'>
+    </div>
+    <div class="mb-3">
+        <div class="row">
+            <label for="temp" class="form-label">Temperature: </label>
+        </div>
+        <div class="form-check form-check-inline" name="temp">
+            <input class="form-check-input" type="radio" value="cold" id="cold">
+            <label class="form-check-label" for="cold">
+              Cold
+            </label>
+        </div>
+        <div class="form-check form-check-inline" name="temp">
+            <input class="form-check-input" type="radio" value="slightly-cold" id="slightly-cold">
+            <label class="form-check-label" for="slightly-cold">
+              Slightly Cold
+            </label>
+        </div>
+        <div class="form-check form-check-inline" name="temp">
+            <input class="form-check-input" type="radio" value="cool" id="cool">
+            <label class="form-check-label" for="cool">
+              Cool
+            </label>
+        </div>
+        <div class="form-check form-check-inline" name="temp">
+            <input class="form-check-input" type="radio" value="neutral" id="neutral">
+            <label class="form-check-label" for="neutral">
+              Neutral
+            </label>
+        </div>
+        <div class="form-check form-check-inline" name="temp">
+            <input class="form-check-input" type="radio" value="slightly-warm" id="slightly-warm">
+            <label class="form-check-label" for="slightly-warm">
+              Slightly Warm
+            </label>
+        </div>
+        <div class="form-check form-check-inline" name="temp">
+            <input class="form-check-input" type="radio" value="warm" id="warm">
+            <label class="form-check-label" for="warm">
+              Warm
+            </label>
+        </div>
+        <div class="form-check form-check-inline" name="temp">
+            <input class="form-check-input" type="radio" value="hot" id="hot">
+            <label class="form-check-label" for="hot">
+              Hot
+            </label>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="properties" class="form-label">Properties: </label>
+        <div class="form-check" name="properties">
+            <input class="form-check-input" type="checkbox" value="aromatic" id="aromatic">
+            <label class="form-check-label" for="aromatic">
+              Aromatic / Pungent
+            </label>
+        </div>
+        <div class="form-check" name="properties">
+            <input class="form-check-input" type="checkbox" value="astringent" id="astringent">
+            <label class="form-check-label" for="astringent">
+              Astringent
+            </label>
+        </div>
+        <div class="form-check" name="properties">
+            <input class="form-check-input" type="checkbox" value="bitter" id="bitter">
+            <label class="form-check-label" for="bitter">
+              Bitter
+            </label>
+        </div>
+        <div class="form-check" name="properties">
+            <input class="form-check-input" type="checkbox" value="salty" id="salty">
+            <label class="form-check-label" for="salty">
+              Salty
+            </label>
+        </div>
+        <div class="form-check" name="properties">
+            <input class="form-check-input" type="checkbox" value="spicy" id="spicy">
+            <label class="form-check-label" for="spicy">
+              Spicy
+            </label>
+        </div>
+        <div class="form-check" name="properties">
+            <input class="form-check-input" type="checkbox" value="sour" id="sour">
+            <label class="form-check-label" for="sour">
+              Sour
+            </label>
+        </div>
+        <div class="form-check" name="properties">
+            <input class="form-check-input" type="checkbox" value="sweet" id="sweet">
+            <label class="form-check-label" for="sweet">
+              Sweet
+            </label>
+        </div>
+        <div class="form-check" name="properties">
+            <input class="form-check-input" type="checkbox" value="toxic" id="toxic">
+            <label class="form-check-label" for="toxic">
+              Toxic
+            </label>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="channels" class="form-label">Channels Entered:</label>
+        <div class="form-check" name="channels">
+            <input class="form-check-input" type="checkbox" value="LU" id="LU">
+            <label class="form-check-label" for="LU">
+              LU
+            </label>
+        </div>
+        <div class="form-check" name="channels">
+            <input class="form-check-input" type="checkbox" value="LI" id="LI">
+            <label class="form-check-label" for="LI">
+              LI
+            </label>            
+        </div>
+        <div class="form-check" name="channels">
+            <input class="form-check-input" type="checkbox" value="ST" id="ST">
+            <label class="form-check-label" for="ST">
+              ST
+            </label>            
+        </div>
+        <div class="form-check" name="channels">
+            <input class="form-check-input" type="checkbox" value="SP" id="SP">
+            <label class="form-check-label" for="SP">
+              SP
+            </label>            
+        </div>
+        <div class="form-check" name="channels">
+            <input class="form-check-input" type="checkbox" value="HT" id="HT">
+            <label class="form-check-label" for="HT">
+              HT
+            </label>            
+        </div>
+        <div class="form-check" name="channels">
+            <input class="form-check-input" type="checkbox" value="SI" id="SI">
+            <label class="form-check-label" for="SI">
+              SI
+            </label>            
+        </div>
+        <div class="form-check" name="channels">
+            <input class="form-check-input" type="checkbox" value="BL" id="BL">
+            <label class="form-check-label" for="BL">
+              BL
+            </label>            
+        </div>
+        <div class="form-check" name="channels">
+            <input class="form-check-input" type="checkbox" value="KD" id="KD">
+            <label class="form-check-label" for="KD">
+              KD
+            </label>            
+        </div>
+        <div class="form-check" name="channels">
+            <input class="form-check-input" type="checkbox" value="PC" id="PC">
+            <label class="form-check-label" for="PC">
+              PC
+            </label>            
+        </div>
+        <div class="form-check" name="channels">
+            <input class="form-check-input" type="checkbox" value="SJ" id="SJ">
+            <label class="form-check-label" for="SJ">
+              SJ
+            </label>            
+        </div>
+        <div class="form-check" name="channels">
+            <input class="form-check-input" type="checkbox" value="GB" id="GB">
+            <label class="form-check-label" for="GB">
+              GB
+            </label>            
+        </div>
+        <div class="form-check" name="channels">
+            <input class="form-check-input" type="checkbox" value="LV" id="LV">
+            <label class="form-check-label" for="LV">
+              LV
+            </label>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="category" class="form-label">Primary Category:</label>
+        <select class="form-select" name="category">
+            <option selected disabled>Choose a Category</option>
+            <option value="ext-wind-cold">Release Exterior Wind-Cold</option>
+            <option value="ext-wind-heat">Release Exterior Wind-Heat</option>
+            <option value="drain-fire">Drain Fire</option>
+            <option value="cool-blood">Cool Blood</option>
+            <option value="clear-heat-damp">Clear Heat, Dry Damp</option>
+            <option value="clear-heat-toxic">Clear Toxic Heat</option>
+            <option value="clear-heat-summer">Clear Summer Heat</option>
+            <option value="purge">Purgatives</option>
+            <option value="laxatives">Moist Laxatives</option>
+            <option value="harsh-expellants">Harsh Expellants</option>
+            <option value="drain-damp">Drain Dampness</option>
+            <option value="dispel-wind-damp">Dispel Wind-Dampness</option>
+            <option value="transform-phlegm-heat">Transform Phlegm-Heat</option>
+            <option value="transform-phlegm-cold">Transform Phlegm-Cold</option>
+            <option value="cough-wheeze">Relieve Coughing & Wheezing</option>
+            <option value="aromatic-damp">Aromatic Transform Dampness</option>
+            <option value="food-yu">Relieve Food Stagnation</option>
+            <option value="regulate-qi">Regulate Qi</option>
+            <option value="stop-bleeding">Stop Bleeding</option>
+            <option value="blood-yu">Invigorate Blood</option>
+            <option value="warm-interior">Warm Interior, Expel Cold</option>
+            <option value="tonify-qi">Tonify Qi</option>
+            <option value="tonify-xue">Tonify Blood</option>
+            <option value="tonify-yang">Tonify Yang</option>
+            <option value="tonify-yin">Tonify Yin</option>
+            <option value="stabilize-bind">Astringe, Stabilize, & Bind</option>
+            <option value="anchor-calm-shen">Anchor, Settle, & Calm Spirit</option>
+            <option value="nourish-calm-shen">Nourish Heart, Calm Spirit</option>
+            <option value="open-orifices">Open the Orifices</option>
+            <option value="expel-parasites">Expel Parasites</option>
+            <option value="external-application">External Application</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <div class="row">
+            <label for="actions" class="form-label">Actions</label>
+        </div>
+        <textarea id="actions" name='actions' rows="5" cols="50"></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="imgUpload" class="form-label">Image</label>
+        <input type="file" class="form-control" id="imageUpload" name="file">
+    </div>
+    <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
 </form>
+</div>

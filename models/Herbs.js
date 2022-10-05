@@ -4,20 +4,21 @@ const HerbSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
+    unique: true,
   },
   latinName: {
     type: String,
     required: true,
+    unique: true,
   },
   commonName: {
     type: String,
-    required: true,
   },
   temp: {
     type: String,
     required: true
   },
-  flavor: {
+  properties: {
     type: String,
     required: true
   },
@@ -33,6 +34,7 @@ const HerbSchema = new mongoose.Schema({
   },
   image: {
     type: String,
+    required: true,
   },
   addedBy: {
     type: mongoose.Schema.Types.ObjectId,
