@@ -2,7 +2,7 @@
 
 This project is in progress. check back soon, the due date is Tuesday, Aug 30!
 
-**Link to project:** http://recruiters-love-seeing-live-demos.com/
+**Link to project:** coming soon!
 
 ![alt tag](http://placecorgi.com/1200/650)
 
