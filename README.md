@@ -2,7 +2,7 @@
 
 This project is in progress. check back soon, the due date is Tuesday, Aug 30!
 
-**Link to project:** coming soon!
+**Link to project:** https://medicinals-api.onrender.com
 
 ![alt tag](http://placecorgi.com/1200/650)
 
