@@ -19,20 +19,24 @@ const HerbSchema = new mongoose.Schema({
     required: true
   },
   properties: {
-    type: String,
+    type: Array,
     required: true
   },
   channels: {
-      type: String
+      type: Array,
   }, 
   category: {
     type: String,
     required: true
   },
   actions: {
-      type: String
+      type: Array,
   },
   image: {
+    type: String,
+    required: true,
+  },
+  cloudinaryId: {
     type: String,
     required: true,
   },

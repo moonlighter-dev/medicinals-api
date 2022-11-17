@@ -1,4 +1,5 @@
 const Herb = require('../models/Herbs')
+const cloudinary = require("../middleware/cloudinary")
 
 module.exports = {
 
@@ -25,8 +26,10 @@ module.exports = {
     },
 
     addHerb: async (req, res)=>{
-
+        console.log(req.body)
         const result = await cloudinary.uploader.upload(req.file.path)
+
+        const actions = req.body.actions.split('/r/n')
 
         // console.log(req.user)
         let herb = new Herb({
@@ -34,11 +37,12 @@ module.exports = {
             latinName: req.body.latinName, 
             commonName: req.body.commonName,
             temp: req.body.temp,
-            flavor: req.body.flavor,
+            properties: req.body.properties,
             channels: req.body.channels,
             category: req.body.category,
-            actions: req.body.actions,
+            actions: actions,
             image: result.secure_url,
+            cloudinaryId: result.public_id,
             addedby: req.user.id,
         })
         try{
@@ -77,10 +81,11 @@ module.exports = {
     deleteHerb: async (req, res)=>{
         // console.log(req.user, req.params.id)
         // alert "Are you sure??"
+        console.log("Entering delete scenario")
         try{
             let herb = await Herb.findById({ _id: req.params.id })
-            await cloudinary.uploader.destroy(post.cloudinaryId)
-            await Post.remove({ _id: req.params.id })
+            await cloudinary.uploader.destroy(herb.cloudinaryId)
+            await Herb.remove({ _id: req.params.id })
             console.log(`Deleted!`)
             res.redirect('/')
         }catch(err){

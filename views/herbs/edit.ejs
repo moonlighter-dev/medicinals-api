@@ -1,6 +1,6 @@
 <h1><%= herb.name %></h1>
 
-<form action="/herbs/edit/<%= herb._id %>" method='POST'>
+<form action="/herbs/edit/<%= herb._id %>?_method=PUT" method='POST'>
     <input type="hidden" name="_method" value="PUT"/>
     <input type="text" placeholder="Herb Name" name='name' value="<%= herb.name %>">
     <input type="text" placeholder="Latin Name" name='latinName' value="<%= herb.latinName %>">
@@ -14,7 +14,7 @@
     <button type="submit">Update this Herb</button>
 </form>
 
-<form action="/herbs/edit/<%= herb._id %>" method="POST">
+<form action="/herbs/delete/<%= herb._id %>?_method=DELETE">
     <input type="hidden" name="_method" value="DELETE">
     <button type="submit">Delete this Herb</button>
 </form>

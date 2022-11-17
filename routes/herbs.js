@@ -25,7 +25,7 @@ router.get('/edit/:id', ensureAuth, herbsController.editHerb)
 router.put('/edit/:id', ensureAuth, herbsController.updateHerb)
 
 // delete an herb
-// route: DELETE /herbs/edit/:id
-router.delete('/edit/:id', ensureAuth, herbsController.deleteHerb)
+// route: DELETE /herbs/delete/:id
+router.delete('/delete/:id', ensureAuth, herbsController.deleteHerb)
 
 module.exports = router
